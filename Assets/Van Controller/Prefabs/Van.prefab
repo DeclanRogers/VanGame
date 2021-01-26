@@ -75,6 +75,7 @@ MonoBehaviour:
   m_GravityModifier: 1.5
   m_AccelerationInput: 0
   m_TurnInput: 0
+  m_Grounded: 1
   m_SuspensionHeight: 0.6
   m_Dampening: 1
   m_SuspensionStiffness: 15
@@ -97,10 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5ea6d43a9e9f846828af8b7c648db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   flippedRotation: 45
   regularFlipSpeed: 1
   boostFlipSpeed: 5
-  canDrive: 1
+  lineCastLength: 1.2
 --- !u!65 &7850928249034079218
 BoxCollider:
   m_ObjectHideFlags: 0
