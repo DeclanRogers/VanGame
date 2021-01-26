@@ -21,6 +21,9 @@ public class VanController : MonoBehaviour
     
     [Tooltip("Alters the fallspeed and weight on the supsension of the vehicle\nNOTE: The same effect can be applied by directly altering the gravity in the project settings which will also keep world consistency.\nSet this to 1 to not use the modifier.")]
     public float m_GravityModifier = 1.5f;
+
+    [Tooltip("How quickly the van spins when mid air")]
+    public float rollSpeed = 5.0f;
     
     [Space(10.0f)]
     [Tooltip("W/S input axis")]
@@ -34,6 +37,8 @@ public class VanController : MonoBehaviour
     private bool m_Drift = false;
     private float m_DriftSmoothing;
     private int m_WheelsOnGround = 0;
+    private bool m_RightRoll = false;
+    private bool m_LeftRoll = false;
 
     [Header("SUSPENSION")]
     [Min(0.0f)]
@@ -84,6 +89,8 @@ public class VanController : MonoBehaviour
         m_TurnInput = Input.GetAxisRaw("Horizontal");
         m_Boost = Input.GetKey(KeyCode.LeftShift) ? true : false;
         m_Drift = Input.GetKey(KeyCode.Space) ? true : false;
+        m_RightRoll = Input.GetKey(KeyCode.E) ? true : false;
+        m_LeftRoll = Input.GetKey(KeyCode.Q) ? true : false;
     }
 
     private void FixedUpdate()
@@ -92,6 +99,11 @@ public class VanController : MonoBehaviour
             m_Rigidbody.velocity += Vector3.up * Physics.gravity.y * 1.5f * Time.fixedDeltaTime;
 
         CalculateSuspension();
+
+        if (m_RightRoll && !m_Grounded)
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - rollSpeed);
+        if (m_LeftRoll && !m_Grounded)
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + rollSpeed);
 
         if (!m_Grounded)
             return;
