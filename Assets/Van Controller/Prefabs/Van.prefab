@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7850928249034079219}
   - component: {fileID: 7850928249034079212}
   - component: {fileID: 7850928249034079213}
+  - component: {fileID: 6423314451566037769}
   - component: {fileID: 7850928249034079218}
   m_Layer: 8
   m_Name: Van
@@ -74,6 +75,7 @@ MonoBehaviour:
   m_GravityModifier: 1.5
   m_AccelerationInput: 0
   m_TurnInput: 0
+  m_Grounded: 1
   m_SuspensionHeight: 0.6
   m_Dampening: 1
   m_SuspensionStiffness: 15
@@ -84,6 +86,23 @@ MonoBehaviour:
   m_RearRightWheel: {fileID: 7850928249617903381}
   m_DebugView: 1
   m_FlipForce: 20
+--- !u!114 &6423314451566037769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850928249034079216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5ea6d43a9e9f846828af8b7c648db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  flippedRotation: 45
+  regularFlipSpeed: 1
+  boostFlipSpeed: 5
+  lineCastLength: 1.2
 --- !u!65 &7850928249034079218
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -244,7 +263,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -269,7 +287,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7850928250626521806
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +342,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -350,7 +366,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7850928250909161176
 GameObject:
   m_ObjectHideFlags: 0

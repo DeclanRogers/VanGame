@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeliveryNode : MonoBehaviour
 {
 
-    public int nodeNumber;
+    
     public bool isActive;
 
     public GameObject TriggerMesh;

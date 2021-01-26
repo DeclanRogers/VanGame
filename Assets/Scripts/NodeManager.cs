@@ -6,6 +6,8 @@ public class NodeManager : MonoBehaviour
 {
 
     public GameObject[] nodes;
+    public int nodeNumber;
+    public GameObject currentNode;
 
     void Start()
     {
@@ -20,8 +22,9 @@ public class NodeManager : MonoBehaviour
 
     public void NewNode()
     {
-        int i = Random.Range(1, nodes.Length);
+        nodeNumber = Random.Range(1, nodes.Length);
+        currentNode = nodes[nodeNumber];
 
-        nodes[i].gameObject.GetComponent<DeliveryNode>().isActive = true;
+        currentNode.gameObject.GetComponent<DeliveryNode>().isActive = true;
     }
 }
