@@ -29,7 +29,7 @@ public class VanController : MonoBehaviour
     [Tooltip("A/D input axis")]
     public float m_TurnInput;
 
-    private bool m_Grounded = true;
+    public bool m_Grounded = true;
     private bool m_Boost = false;
     private bool m_Drift = false;
     private float m_DriftSmoothing;
@@ -77,8 +77,8 @@ public class VanController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-            ForceFlip();
+        /*if (Input.GetKeyDown(KeyCode.F))
+            ForceFlip();*/
 
         m_AccelerationInput = Input.GetAxisRaw("Vertical");
         m_TurnInput = Input.GetAxisRaw("Horizontal");
@@ -176,7 +176,7 @@ public class VanController : MonoBehaviour
         m_Rigidbody.velocity = transform.TransformDirection(localVel);
     }
 
-    private void ForceFlip()
+    /*private void ForceFlip()
     {
         Vector3 torque;
         torque.x = Random.Range(-1.0f, 1.0f);
@@ -185,5 +185,5 @@ public class VanController : MonoBehaviour
 
         m_Rigidbody.AddTorque(torque * m_FlipForce * m_Rigidbody.mass, ForceMode.Impulse);
         m_Rigidbody.AddForce(Vector3.up * m_FlipForce * m_Rigidbody.mass, ForceMode.Impulse);
-    }
+    }*/
 }

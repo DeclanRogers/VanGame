@@ -4,25 +4,35 @@ using UnityEngine;
 
 public class VanFlip : MonoBehaviour
 {
+    public VanController controller;
+
     bool flipped = false;
     float flipSpeed;
 
     public float flippedRotation = 45; //the angle at which the van is considdered flipped and needs to be put back on it's wheels
     public float regularFlipSpeed = 1;
     public float boostFlipSpeed = 5;
-    [HideInInspector]
-    public bool canDrive = true; // allows the Van to stop moving forward when it is sideways enough to loose traction
+
+    public float lineCastLength = 2;
+
     void Start()
     {
-        
+        controller = GetComponent<VanController>();
     }
 
     void Update()
     {
-        if((transform.rotation.eulerAngles.z < 360-flippedRotation && transform.rotation.eulerAngles.z > 180) || (transform.rotation.eulerAngles.z < 180 && transform.rotation.eulerAngles.z > flippedRotation))
+        int layerMask = 1 << 8;
+        layerMask = ~layerMask;
+        
+        Debug.DrawLine(transform.position, transform.position - transform.right * lineCastLength, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.right * lineCastLength, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + transform.up * lineCastLength, Color.blue);
+
+        if ((transform.rotation.eulerAngles.z < 360 - flippedRotation && transform.rotation.eulerAngles.z > 180) || (transform.rotation.eulerAngles.z < 180 && transform.rotation.eulerAngles.z > flippedRotation))
         {
-            canDrive = false;
-            flipped = true;
+            if (Physics.Linecast(transform.position, transform.position - transform.right * lineCastLength, layerMask) || Physics.Linecast(transform.position, transform.position + transform.right * lineCastLength, layerMask) || Physics.Linecast(transform.position, transform.position + transform.up * lineCastLength, layerMask))
+                flipped = true;
         }
 
 
@@ -46,7 +56,7 @@ public class VanFlip : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
             flipped = false;
-            canDrive = true;
         }
+
     }
 }
